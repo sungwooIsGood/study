@@ -5,34 +5,49 @@ import java.util.Arrays;
 // 배열로 stack구현 linkedList로도 구현도 가능하다.
 public class StackStructure {
 	
-	private Object[] stack;
+	private Node[] stack;
 	private int lastIndex;
-	private Object[] newStack;
+	private Node[] newStack;
+	
+	// Node class 만들기
+	class Node{
+		int data;
+		
+		Node(int data){
+			this.data = data;
+		}
+		
+		public String toString() {
+			return String.valueOf(this.data);
+		}
+	}
 	
 	private StackStructure() {
-		stack = new Object[4];
+		stack = new Node[4];
 		lastIndex = -1; // index는 0으로 시작하기 때문에 
 	}
 	
-	public void push(Object input) {
+	public void push(int input) {
+		
+		Node newNode = new Node(input);
 		
 		if(lastIndex < stack.length - 1) { 
 			if(stack[0] == null) {
-				stack[0] = input;
+				stack[0] = newNode;
 			} else {
-				stack[lastIndex + 1] = input;
+				stack[lastIndex + 1] = newNode;
 			}
 			
 			lastIndex++; // 3
 		} else {
-			newStack = new Object[stack.length+1]; 
+			newStack = new Node[stack.length+1]; 
 			
 			for(int i = 0; i <stack.length; i++) {
 				newStack[i] = stack[i];
 			}
 			stack = newStack;
 			lastIndex++; 
-			stack[lastIndex] = input; 
+			stack[lastIndex] = newNode; 
 		}
 		
 	}
@@ -42,14 +57,13 @@ public class StackStructure {
 		
 		Object lastIndexPop = stack[lastIndex];
 		
-		newStack = new Object[lastIndex]; 
+		newStack = new Node[lastIndex]; 
 		for(int i = 0; i < newStack.length; i++) {
 			newStack[i] = stack[i];
 		}
 				
 		stack = newStack;
 		lastIndex--;
-		System.out.println(lastIndex);
 		return lastIndexPop;
 	}
 	
