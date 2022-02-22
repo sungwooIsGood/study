@@ -1,5 +1,7 @@
 package sort;
 
+import java.util.Arrays;
+
 public class MergeSort {
 	
 	// 분할하는 메소드
@@ -19,12 +21,12 @@ public class MergeSort {
 	public static void merge(int[] arr, int[] temp, int first, int mid, int last) {
 		for(int i = first; i <=last; i++) {
 			temp[i] = arr[i];
-//			System.out.print(first);
 		}
+		System.out.println(Arrays.toString(temp));
 		
-		int left = first;
-		int right = mid +1;
-		int index = first;
+		int left = first; // 0
+		int right = mid +1; // 2
+		int index = first; // 0
 		
 		while(left <= mid && right <= last) {
 			if(temp[left] <= temp[right]) {
@@ -34,8 +36,10 @@ public class MergeSort {
 				arr[index] = temp[right];
 				right++;
 			}
-			index++;
+			index++; // 1
 		}
+		System.out.println(Arrays.toString(arr));
+		System.out.println("===========");
 		for(int i = 0; i <=mid-left; i++) {
 			arr[index+i] = temp[left+i];
 		}
@@ -44,7 +48,7 @@ public class MergeSort {
 	public static void main(String[] args) {
 		
 		// 정렬안된 배열
-		int[] arr = {5,4,3,6,7,8};
+		int[] arr = {5,4,3,6,1,9,6,0};
 		// 정렬할 배열
 		int[] temp = new int[arr.length];
 
