@@ -13,6 +13,7 @@ public class MergeSort {
 			// first, mid, last는 arr의 index를 가르킨다.
 			mergesort(arr,temp,first,mid); 
 			mergesort(arr,temp,mid+1,last);
+			System.out.println(first + " " + mid + " " + last);
 			merge(arr,temp,first,mid,last);
 		}
   	}
@@ -22,7 +23,7 @@ public class MergeSort {
 		for(int i = first; i <=last; i++) {
 			temp[i] = arr[i];
 		}
-		System.out.println(Arrays.toString(temp));
+//		System.out.println(Arrays.toString(temp));
 		
 		int left = first; // 0
 		int right = mid +1; // 2
@@ -37,9 +38,11 @@ public class MergeSort {
 				right++;
 			}
 			index++; // 1
+			System.out.println(Arrays.toString(arr));
 		}
-		System.out.println(Arrays.toString(arr));
-		System.out.println("===========");
+//		System.out.println(Arrays.toString(arr));
+//		System.out.println("===========");
+		
 		for(int i = 0; i <=mid-left; i++) {
 			arr[index+i] = temp[left+i];
 		}
