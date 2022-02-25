@@ -22,7 +22,6 @@ public class B9007 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		
 		int test = sc.nextInt();
 		
 		for(int k = 0; k < test; k++) {

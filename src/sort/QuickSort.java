@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class QuickSort {
 	
 	public static void quickSort(int[] arr,int first,int last) {
-	
+			
 		if(first < last) {
             int pivot = first;
             int i = first + 1; // 오른쪽으로 가며 pivot보다 큰 값 찾는 것

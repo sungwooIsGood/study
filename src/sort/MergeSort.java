@@ -7,7 +7,6 @@ public class MergeSort {
 	// 분할하는 메소드
 	public static void mergesort(int[] arr, int[]temp, int first, int last) { 
 		
-		
 		if(first < last) {
 			int mid = (first + last) / 2; 
 			// first, mid, last는 arr의 index를 가르킨다.
@@ -20,6 +19,7 @@ public class MergeSort {
 	
 	// 병합하는 메소드
 	public static void merge(int[] arr, int[] temp, int first, int mid, int last) {
+		
 		for(int i = first; i <=last; i++) {
 			temp[i] = arr[i];
 		}
@@ -43,6 +43,7 @@ public class MergeSort {
 //		System.out.println(Arrays.toString(arr));
 //		System.out.println("===========");
 		
+		// 뒤쪽이 먼저 끝나게 됐을 경우 앞쪽에 있는 값들을 정리
 		for(int i = 0; i <=mid-left; i++) {
 			arr[index+i] = temp[left+i];
 		}
