@@ -17,17 +17,18 @@ public class B1157_단어공부 {
       
       String s = br.readLine();
 
-      s.toUpperCase();      // ZZA
+      s = s.toUpperCase();   // ZZA
       
       Map<Character,Integer> map = new HashMap<>();
       
-      int count = 1;
-
+      // value값 하나씩 올려주는 역할
+      int cnt = 0;
+      
       for(int i = 0; i < s.length(); i++) {
 
          if(!map.containsKey(s.charAt(i))) {
             
-            map.put(s.charAt(i), count); // z : 1   
+            map.put(s.charAt(i), 1); // z : 1   
          
          } else {
             
@@ -38,10 +39,9 @@ public class B1157_단어공부 {
 //            map.put(s.charAt(i), map.get(s.charAt(i))+1);
             
             // 방법 2
-            int cnt = map.get(s.charAt(i));
+            cnt = map.get(s.charAt(i));
             cnt++;
             map.put(s.charAt(i), cnt);
-            
             
          }
       }
@@ -58,25 +58,27 @@ public class B1157_단어공부 {
       List<Character> listKeySet = new ArrayList<>(map.keySet());      
       Collections.sort(listKeySet, (value1, value2) -> (map.get(value2).compareTo(map.get(value1))));
 
-      // 인덱스[0]과 비교하여 최대값이 두개 이상이면 ?로 변환
-      String max = "";
+      // map에 있는 최대값이 여러개인지 알 수 있는 역할
+      int count = 0;
+      char result = ' ';
+      
+//      for(Character key : listKeySet) {
+//         System.out.println("key : " + key + " , " + "value : " + map.get(key));
+//      }
 
-      for(Character key : listKeySet) {
-         System.out.println("key : " + key + " , " + "value : " + map.get(key));
+      for(Character key : map.keySet()) {
+    	  if(Collections.max(map.values()) == map.get(key)) {
+              count++;
+              result = key;
+
+           }
       }
 
-      
-//      for(int i = 1; i < map.size(); i++) {
-//         if(Collections.max(map.values()) == map.get(s.charAt(i))) {
-//            max = "?";
-//         }
-//      }
-//      
-//      if(max.equals("?")) {
-//         System.out.println(max);
-//      } else {
-//         Collections.max(map.values());
-//      }
+      if(count > 1) {
+         System.out.println("?");
+      } else {
+         System.out.println(result);
+      }
    }
 
 }
