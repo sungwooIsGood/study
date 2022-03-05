@@ -15,9 +15,7 @@ public class B1157_단어공부 {
    public static void main(String[] args) throws IOException {
       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
       
-      String s = br.readLine();
-
-      s = s.toUpperCase();   // ZZA
+      String s = br.readLine().toUpperCase();   // ZZA
       
       Map<Character,Integer> map = new HashMap<>();
       
@@ -55,8 +53,8 @@ public class B1157_단어공부 {
       //System.out.println(Collections.max(map.values()));
       
       // 내림차순 정렬 Collections.sort() => List형태로 Map을 가져와야한다.
-      List<Character> listKeySet = new ArrayList<>(map.keySet());      
-      Collections.sort(listKeySet, (value1, value2) -> (map.get(value2).compareTo(map.get(value1))));
+//      List<Character> listKeySet = new ArrayList<>(map.keySet());      
+//      Collections.sort(listKeySet, (value1, value2) -> (map.get(value2).compareTo(map.get(value1))));
 
       // map에 있는 최대값이 여러개인지 알 수 있는 역할
       int count = 0;
@@ -67,10 +65,9 @@ public class B1157_단어공부 {
 //      }
 
       for(Character key : map.keySet()) {
-    	  if(Collections.max(map.values()) == map.get(key)) {
+    	  if(Collections.max(map.values()).equals(map.get(key))) {
               count++;
               result = key;
-
            }
       }
 
@@ -79,6 +76,7 @@ public class B1157_단어공부 {
       } else {
          System.out.println(result);
       }
+      
    }
 
 }
