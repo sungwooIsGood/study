@@ -12,7 +12,6 @@ public class B2839_설탕배달 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int input = Integer.parseInt(br.readLine());
-		
 		int temp = 0;
 		
 		while(true) {
@@ -21,7 +20,7 @@ public class B2839_설탕배달 {
 				System.out.println(temp);
 				break;
 			} else {
-				input -= 3;
+				input = input - 3;
 				temp++;
 			}
 			
@@ -30,6 +29,7 @@ public class B2839_설탕배달 {
 				break;
 			}
 		}
+		
+		
 	}
-
 }
