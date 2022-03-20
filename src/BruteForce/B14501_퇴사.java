@@ -32,9 +32,9 @@ public class B14501_퇴사 {
 		
 		for(int i = 0; i < days; i++) {
 			
-			if(temp + map.keySet() <=days) {
-				
-			}
+//			if(temp + map.keySet() <=days) {
+//				
+//			}
 		}
 		
 	}

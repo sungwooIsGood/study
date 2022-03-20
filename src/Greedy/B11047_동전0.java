@@ -20,20 +20,23 @@ public class B11047_동전0 {
 		int y = Integer.parseInt(s[1]);
 		
 		// 내림차순은 Integer로 해야함
-		Integer[] arr = new Integer[x];
+		int[] arr = new int[x];
 		
 		for(int i = 0; i < arr.length; i++) {
 			arr[i] = Integer.parseInt(br.readLine());
 		}
-        Arrays.sort(arr,Collections.reverseOrder());
-		// 동전갯수 최소값
+		
+		// 내림차순 정렬
+        Arrays.sort(arr);
+		
+        // 동전갯수 최소값
 		int count = 0;
 		
-		for(int i = 0; i < arr.length; i++) {
+		for(int i = arr.length-1; i >= 0; i--) {
 			
-			if(arr[i] < 4200) {
+			if(arr[i] <= y) {
 				count += y / arr[i];
-				y = y % arr[i] ; // 4200 / 1000  y == 200
+				y = y % arr[i] ; 
 			}
 		}
 		System.out.println(count);
