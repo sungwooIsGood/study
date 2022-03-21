@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,38 +26,43 @@ public class B1260_DFS와BFS {
 		
 		// 정점
 		n = Integer.parseInt(s[0]);
-		
 		// 간선
 		m = Integer.parseInt(s[1]);
 		// 정점의 번호
 		v = Integer.parseInt(s[2]);
 		
-		arr = new ArrayList[m]; // 정점 기준? 간선 기준?
-		visit = new boolean[m];
+		arr = new ArrayList[n+1]; // index가 0이아닌 1로 시작해주기 위해서 안헷갈리기 위한것.
+		visit = new boolean[n+1];
+		
+		// 연결된 노드 정보
+		// arr[1] = [2,3,4] / arr[2] = [1,4] / arr[3] =[1,4] / arr[4] = [1,2,3,4]
+		for(int i = 1; i < arr.length; i++) {
+			arr[i] = new ArrayList<>();
+		}
 		
 		for(int i = 0; i < arr.length; i++) {
 			// arrayList를 담으려면 선언을 해준 후 담아주어야한다.
-			arr[i] = new ArrayList<>();
 			String[] ss = br.readLine().split(" ");
-			
-			arr[i].add(Integer.parseInt(ss[0]));
-			arr[i].add(Integer.parseInt(ss[1]));
+			arr[Integer.parseInt(ss[0])].add(Integer.parseInt(ss[1]));
+			arr[Integer.parseInt(ss[1])].add(Integer.parseInt(ss[0]));
 		}
 		
+		//System.out.println(Arrays.toString(arr));
 		
-		q = new LinkedList<>();
+		dfs(v);
+		System.out.println();
 		
-//		dfs(v);
-		
+		// bfs를 위해서 false 처리
 		for(int i = 0; i < visit.length; i++) {
 			visit[i] = false;
 		}
 		
+		q = new LinkedList<>();
 		bfs(v);
 		
 	}
 	
-	public static void dfs(int n) {
+	public static void dfs(int n) { 
 		
 		// 방문 했으면 재귀를 종료
 		if(visit[n] == true) {
@@ -65,35 +71,37 @@ public class B1260_DFS와BFS {
 			visit[n] = true;
 		}
 		
+		System.out.print(n + " ");
 		for(int i = 0; i < arr[n].size(); i++) {
 			dfs(arr[n].get(i));
 		}
+		
 		
 	}
 	
 	public static void bfs(int n) {
 		// queue에 삽입
-		q.offer(n);
-		
-		// 방문처리
+		q.add(n);
+		// 트리 맨 위에 있는 첫번째 노드 방문처리
 		visit[n] = true;
 		
-		// 꺼낸 노드에 인접한 방문하지 않은 노드를 방문하고 큐에 삽입
+		// queue안이 빌때까지 즉, 트리에 있는 모든 노드를 너비만큼 돌았을 경우 종료
 		while(!q.isEmpty()) {
-			// queue에 있는 값을 꺼낸다.
-			int current = q.poll(); // 1,3,2,4
+			// queue에 있는 노드를 하나씩 가로로 탐색
+			int node = q.poll();
 			
-			
-			for(int i = 0; i < arr[current].size(); i++) {
-				int next = arr[current].get(i);
+			for(int i = 0; i < arr[node].size(); i++) {
+				// arr(노드)안에 있는 배열값들을 하나씩 다 탐색
+				int next = arr[node].get(i);
 				
 				if(!visit[next]) {
-					q.offer(next);
+					q.add(next);
 					visit[next] = true;
 				}
-				System.out.println(n);
 			}
+			System.out.print(node + " ");
 		}
+			
 	}
 
 }
