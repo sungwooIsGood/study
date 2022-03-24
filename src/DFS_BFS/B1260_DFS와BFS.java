@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -36,19 +37,18 @@ public class B1260_DFS와BFS {
 		
 		// 연결된 노드 정보
 		// arr[1] = [2,3,4] / arr[2] = [1,4] / arr[3] =[1,4] / arr[4] = [1,2,3,4]
-		for(int i = 1; i < arr.length; i++) {
+		for(int i = 0; i < arr.length; i++) {
 			arr[i] = new ArrayList<>();
 		}
 		
-		for(int i = 0; i < arr.length; i++) {
+		for(int i = 0; i < m; i++) {
 			// arrayList를 담으려면 선언을 해준 후 담아주어야한다.
 			String[] ss = br.readLine().split(" ");
 			arr[Integer.parseInt(ss[0])].add(Integer.parseInt(ss[1]));
 			arr[Integer.parseInt(ss[1])].add(Integer.parseInt(ss[0]));
 		}
-		
-		//System.out.println(Arrays.toString(arr));
-		
+
+		System.out.println(Arrays.toString(arr));
 		dfs(v);
 		System.out.println();
 		
