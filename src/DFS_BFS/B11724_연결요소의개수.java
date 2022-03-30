@@ -12,7 +12,7 @@ public class B11724_연결요소의개수 {
 
 	public static void main(String[] args) throws IOException {
 		
-		// 무방향 그래프: 정점을 잊는 간선들이 하나로 이루어 진 것.
+		// 무방향 그래프는 곧 양방향 그래프 라는 것, 이 말은 양방향 그래프라는 말임. 서로서로 이동가능함.
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 		String[] s = br.readLine().split(" ");
@@ -33,9 +33,10 @@ public class B11724_연결요소의개수 {
 		for(int i = 0; i < m; i++) {
 			String[] ss = br.readLine().split(" ");
 			list[Integer.parseInt(ss[0])].add(Integer.parseInt(ss[1]));
+			list[Integer.parseInt(ss[1])].add(Integer.parseInt(ss[0]));
 		}
 
-		System.out.println(Arrays.toString(list));
+//		System.out.println(Arrays.toString(list));
 		
 		int count = 0;
 		
@@ -43,6 +44,7 @@ public class B11724_연결요소의개수 {
 		
 		for(int i = 1; i < visit.length; i++) {
 			
+//			System.out.println(Arrays.toString(visit));
 			if(visit[i] == false) {
 				
 				q.add(i);
@@ -60,7 +62,6 @@ public class B11724_연결요소의개수 {
 						if(!visit[next]) {
 							q.add(next);
 							visit[next] = true;
-							//System.out.println(Arrays.toString(visit));
 						} 
 					}
 				}
