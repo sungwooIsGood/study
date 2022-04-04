@@ -66,7 +66,8 @@ public class B2178_미로탐색 {
 					if(graph[nextX][nextY] == 1 && !visit[nextX][nextY]) {
 						
 						visit[nextX][nextY] = true;
-						graph[nextX][nextY] = graph[x][y] + 1;
+						graph[nextX][nextY] = graph[x][y] + 1; // count 역할
+						System.out.println(graph[nextX][nextY]);
 						q.add(new int[] {nextX,nextY});
 					}
 				
@@ -76,7 +77,7 @@ public class B2178_미로탐색 {
 			}
 			
 		}
-		
+//		ex) 인덱스 번호로는 [3][5]가 맥스 거리기 때문에
 		return graph[n-1][m-1];
 	}
 
