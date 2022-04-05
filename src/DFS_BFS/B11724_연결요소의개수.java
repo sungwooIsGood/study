@@ -55,7 +55,6 @@ public class B11724_연결요소의개수 {
 					
 					int node = q.poll();
 					
-					
 					for(int j = 0; j < list[node].size(); j++) {
 						int next = list[node].get(j);
 						
