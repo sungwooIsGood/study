@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -35,6 +34,8 @@ public class B1260_DFS와BFS {
 		arr = new ArrayList[n+1]; // index가 0이아닌 1로 시작해주기 위해서 안헷갈리기 위한것.
 		visit = new boolean[n+1];
 		
+		boolean[][] arr1 = new boolean[n+1][n+1];
+		
 		// 연결된 노드 정보
 		// arr[1] = [2,3,4] / arr[2] = [1,4] / arr[3] =[1,4] / arr[4] = [1,2,3,4]
 		for(int i = 0; i < arr.length; i++) {
@@ -44,20 +45,24 @@ public class B1260_DFS와BFS {
 		for(int i = 0; i < m; i++) {
 			// arrayList를 담으려면 선언을 해준 후 담아주어야한다.
 			String[] ss = br.readLine().split(" ");
+			// arr1노드 안에 서로 연결되어있으면 true로 만들어 주는 
 			arr[Integer.parseInt(ss[0])].add(Integer.parseInt(ss[1]));
 			arr[Integer.parseInt(ss[1])].add(Integer.parseInt(ss[0]));
 		}
-
-		System.out.println(Arrays.toString(arr));
+		
+//		정렬시키기 '방문할 수 있는 정점이 여러 개인 경우에는 정점 번호가 작은 것을 먼저 방문'
+		for(int i = 0; i < arr.length; i++) {
+			Collections.sort(arr[i]);
+		}
+		
+		
 		dfs(v);
 		System.out.println();
 		
-		// bfs를 위해서 false 처리
-		for(int i = 0; i < visit.length; i++) {
-			visit[i] = false;
-		}
+		// bfs를 위해 false 처리 
+		visit = new boolean[n+1];
 		
-		q = new LinkedList<>();
+		
 		bfs(v);
 		
 	}
@@ -76,10 +81,11 @@ public class B1260_DFS와BFS {
 			dfs(arr[n].get(i));
 		}
 		
-		
 	}
 	
 	public static void bfs(int n) {
+		
+		q = new LinkedList<>();
 		// queue에 삽입
 		q.add(n);
 		// 트리 맨 위에 있는 첫번째 노드 방문처리

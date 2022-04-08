@@ -47,7 +47,6 @@ public class B7576_토마토 {
 	
 	public static int bfs(int m, int n, int[][] graph) {
 		
-		
 		// 최소거리찾기
 		int min = 0;
 		
