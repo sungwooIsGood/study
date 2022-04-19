@@ -29,10 +29,15 @@ public class B11726_2Xn타일링 {
 		// 2X3까지 경우의 수  2X3은 2X1과 2X2를 이용하였음.
 		ArrayList<Integer> result = new ArrayList<>();
 		
+		// 경우의 수를 넣은 것임.
+		// 2X0인 경우
 		result.add(0);
+		// 2X1인 경우
 		result.add(1);
+		// 2X2인 경우
 		result.add(2);
 		
+		// 2X3은 2X1과 2X2를 이용한 것임.
 		for(int i = 3; i < n+1; i++) {
 			result.add((result.get(i-1) + result.get(i-2))%10007);
 		}
