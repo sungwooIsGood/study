@@ -38,7 +38,7 @@ public class B9465_스티커 {
 			dp[2][1] = card[2][1];
 			
 			// dp[2]
-			dp[2][1] = dp[2][1]+card[1][2];
+			dp[1][2] = dp[2][1]+card[1][2];
 			dp[2][2] = dp[1][1]+card[2][2];
 			
 			for(int k = 3; k<=n; k++) {
