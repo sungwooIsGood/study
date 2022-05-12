@@ -10,7 +10,7 @@ public class B1743_음식물피하기 {
 
 	static int n;
 	static int m;
-	static int min; 
+	static int min; // 탐색한 곳을 넣는 공간
 	static int count; // 탐색할때마다 하나씩 올려준다.
 	
 	static int[][] graph;
@@ -30,7 +30,7 @@ public class B1743_음식물피하기 {
 		m = Integer.parseInt(s[1]);
 		// 음식물 쓰레기 갯수
 		int k = Integer.parseInt(s[2]);
-		// 탐색한 곳을 넣는 공간
+		
 		min = 0;
 
 		graph = new int[n+1][m+1];
@@ -44,8 +44,13 @@ public class B1743_음식물피하기 {
 		
 		for(int i = 1; i <= n; i++) {
 			for(int j = 1; j <= m; j++) {
-				if(!visit[i][j] && graph[i][j] >= 1) {
+				if(!visit[i][j] && graph[i][j] == 1) {
+					
 					bfs(i,j);
+					if(min < count) {
+						min = count;
+					}
+					System.out.println(count);
 				}
 			}
 		}
@@ -76,12 +81,12 @@ public class B1743_음식물피하기 {
 				int nextX = x + dx[i];
 				int nextY = y + dy[i];
 				// 좌표값 조건(가로,세로 최대크기보다 작고 (1,1)에서 시작했으니 (1,1)보다 커야한다)
-				if(nextX < n+1 && nextX >= 1 && nextY < m+1 && nextY >= 1) {
+				if(nextX < n+1 && nextX > 0 && nextY < n+1 && nextY > 0) {
 					// 탐색 조건
-					if(!visit[nextX][nextY] && graph[nextX][nextY] >= 1) {
-						count++;
-						visit[nextX][nextY] = true;
+					if(!visit[nextX][nextY] && graph[nextX][nextY] == 1) {
 						q.add(new int[] {nextX,nextY});
+						visit[nextX][nextY] = true;
+						count++;
 					}
 				}
 			}
