@@ -46,11 +46,12 @@ public class B1743_음식물피하기 {
 			for(int j = 1; j <= m; j++) {
 				if(!visit[i][j] && graph[i][j] == 1) {
 					
+					visit[i][j] = true;
 					bfs(i,j);
 					if(min < count) {
 						min = count;
 					}
-					System.out.println(count);
+//					System.out.println(count);
 				}
 			}
 		}
@@ -58,7 +59,7 @@ public class B1743_음식물피하기 {
 		
 	}
 	
-	public static void bfs(int n, int m) {
+	public static void bfs(int a, int b) {
 		
 		// bfs 메소드가 실행 됐다는 것은 하나라도 있다는 의미
 		count = 1;
@@ -67,7 +68,7 @@ public class B1743_음식물피하기 {
 		int[] dy = {0,0,1,-1};
 		
 		Queue<int[]> q = new LinkedList<>();
-		q.add(new int[] {n,m});
+		q.add(new int[] {a,b});
 		
 		while(!q.isEmpty()) {
 			
@@ -81,7 +82,7 @@ public class B1743_음식물피하기 {
 				int nextX = x + dx[i];
 				int nextY = y + dy[i];
 				// 좌표값 조건(가로,세로 최대크기보다 작고 (1,1)에서 시작했으니 (1,1)보다 커야한다)
-				if(nextX < n+1 && nextX > 0 && nextY < n+1 && nextY > 0) {
+				if(nextX < n+1 && nextX > 0 && nextY < m+1 && nextY > 0) {
 					// 탐색 조건
 					if(!visit[nextX][nextY] && graph[nextX][nextY] == 1) {
 						q.add(new int[] {nextX,nextY});
